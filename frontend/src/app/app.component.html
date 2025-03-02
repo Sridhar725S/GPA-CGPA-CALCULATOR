@@ -1,0 +1,65 @@
+<div class="container">
+  <h1>GPA & CGPA Calculator</h1>
+
+  <!-- Current Date and Time -->
+  <div class="info-container">
+    <div class="info-item">
+        <span class="info-label">Date:</span>
+        <span class="info-value">{{ currentDate | date:'dd/MM/yyyy' }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">Time:</span>
+        <span class="info-value">{{ currentTime }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">GPA Count:</span>
+        <span class="info-value">{{ gpaClicks || 0 }}</span>
+    </div>
+    <div class="info-item">
+        <span class="info-label">CGPA Count:</span>
+        <span class="info-value">{{ cgpaClicks || 0 }}</span>
+    </div>
+</div>
+
+  <hr>
+
+  <!-- GPA Calculator -->
+  <h2>GPA Calculator</h2>
+  <div class="input-row">
+      <label>Number of Subjects:</label>
+      <input type="number" [(ngModel)]="subjectCount" (change)="updateCourses()" min="1" required>
+  </div>
+
+  <div *ngFor="let course of courses; index as i" class="input-row">
+      <label>Credits (Subject {{i + 1}}):</label>
+      <input type="number" [(ngModel)]="course.credits" min="0" required>
+
+      <label>Grade:</label>
+      <select [(ngModel)]="course.grade">
+          <option *ngFor="let grade of grades" [value]="grade">{{grade}}</option>
+      </select>
+  </div>
+
+  <button (click)="calculateGPA()">Calculate GPA</button>
+  <p *ngIf="gpa !== null">Your GPA: {{ gpa | number: '1.3-3' }}</p>
+
+  <hr>
+
+  <!-- CGPA Calculator -->
+  <h2>CGPA Calculator</h2>
+  <div class="input-row">
+      <label>Number of Semesters:</label>
+      <input type="number" [(ngModel)]="semesterCount" (change)="updateSemesters()" min="1" required>
+  </div>
+
+  <div *ngFor="let sem of semesters; index as i" class="input-row">
+      <label>GPA for Semester {{i + 1}}:</label>
+      <input type="number" [(ngModel)]="sem.gpa" min="0" max="10" step="0.001" required>
+
+      <label>Credits:</label>
+      <input type="number" [(ngModel)]="sem.credits" min="0" required>
+  </div>
+
+  <button (click)="calculateCGPA()">Calculate CGPA</button>
+  <p *ngIf="cgpa !== null">Your CGPA: {{ cgpa | number: '1.2-2' }}</p> 
+</div>
