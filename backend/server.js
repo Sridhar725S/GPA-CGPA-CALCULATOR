@@ -58,10 +58,10 @@ app.post('/api/cgpa', (req, res) => {
 
 
 // Serve Angular frontend
-app.use(express.static(path.join(__dirname, '../frontend/dist/frontend')));
+app.use(express.static(path.join(__dirname, '../frontend/dist/frontend/browser')));
 
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/dist/frontend/index.html'));
+    res.sendFile(path.join(__dirname, '../frontend/dist/frontend/browser/index.html'));
 });
 
 
