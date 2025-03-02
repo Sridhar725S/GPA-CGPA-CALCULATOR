@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ClickService {
-  private baseUrl = '/api';
+  private baseUrl = 'https://gpa-cgpa-calculator-yltr.onrender.com/api';
 
   constructor(private http: HttpClient) { }
 
