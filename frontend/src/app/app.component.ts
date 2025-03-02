@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
 
   // GPA Calculation
   calculateGPA() {
-    this.http.post<any>('/api/gpa', { courses: this.courses })
+    this.http.post<any>('https://gpa-cgpa-calculator-yltr.onrender.com/api/gpa', { courses: this.courses })
       .subscribe(
         res => {
           this.gpa = parseFloat(res.gpa);
@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
 
   // CGPA Calculation
   calculateCGPA() {
-    this.http.post<any>('http://localhost:5000/api/cgpa', { semesters: this.semesters })
+    this.http.post<any>('https://gpa-cgpa-calculator-yltr.onrender.com/api/cgpa', { semesters: this.semesters })
       .subscribe(
         res => {
           this.cgpa = parseFloat(res.cgpa);
